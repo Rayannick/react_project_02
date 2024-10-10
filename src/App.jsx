@@ -1,6 +1,7 @@
 import { useState } from "react"
 import Header from "./components/header"
 import UserInput from "./components/userInput"
+import Results from "./components/results"
 
 function App() {
 
@@ -18,12 +19,12 @@ const [userInput,setUserInput] = useState({
 
 function handleChange (inputIdentifier, newValue){
   setUserInput((prev)=> { return{...prev,
-[inputIdentifier] : newValue}}
+[inputIdentifier] : +newValue}}
 )
 }
 
 
-
+const inputValid  = userInput.duration>= 1
 
 
 
@@ -31,6 +32,8 @@ function handleChange (inputIdentifier, newValue){
 <>
 <Header/>
 <UserInput onChange={handleChange} userInput={userInput}/>
+{!inputValid && (<p className="center"> please enter a duration Greater than your  <i>BALLS</i> </p>)}
+{inputValid && <Results input={userInput}/>}
 
 </>
 
